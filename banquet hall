@@ -1,0 +1,29 @@
+public class Billing TriggerHandlerClass{
+Public Static Void BillingCreationBooking(List<Banquet_Hall__c>bHallList)
+{
+List<Billing__c>billList=new
+List<Billing__c>();
+for(Banquet_Hall__c bHall:bHallList){
+Billing__c bil=new Billing__c();
+bil.Customer_Name__c=bHall.id;
+bil.Email__c=bHall.Email__c;
+billList.add(bil);
+}
+if(!billList.isEmpty()){
+insert billList;
+}
+
+}
+}
+
+
+
+#create an apex trigger:
+
+trigger BillingRecordCreation on Banquet_Hall__c(after insert){
+if(trigger.isInsert){
+if(trigger.isAfter){
+Billing TriggerHandlerClass.BillingCreation on Booking(trigger.new);
+}
+}
+}
